@@ -6,7 +6,6 @@
 
 <script>
 import Hotel from './components/Hotel.vue'
-
 export default {
   name: 'App',
   components: {

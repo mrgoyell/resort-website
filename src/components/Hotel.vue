@@ -1,9 +1,10 @@
 <template>
     <div id="body">
         <!-- Page Preloder -->
-       <!-- <div id="preloder">
+       <div id="preloder">
             <div class="loader"></div>
-        </div>-->
+        </div>
+      <!-- Header -->
     <header class="header-section" style="top:0;position:fixed;z-index:5">
         <div class="container-fluid">
             <div class="inner-header">
@@ -14,10 +15,19 @@
                     <div class="row">
                         <div class="col-xl-12">
                             <nav class="main-menu mobile-menu">
-                                <ul>
+                                <ul> <p>
+                                  <!-- use router-link component for navigation. -->
+                                  <!-- specify the link by passing the `to` prop. -->
+                                  <!-- `<router-link>` will be rendered as an `<a>` tag by default -->
+                                  <router-link to="/Rooms">Go to Foo</router-link>
+                                  <router-link to="/bar">Go to Bar</router-link>
+                                </p>
+                                  <!-- route outlet -->
+                                  <!-- component matched by the route will render here -->
+                                  <router-view></router-view>
                                     <li><a href="#">Home</a></li>
                                     <li><a href="#">About</a></li>
-                                    <li><a href="#">Rooms</a></li>
+                                    <li><a href="#"  @click="$router.push('Rooms')">Rooms</a></li>
                                     <li><a href="#">Facilities</a>
                                         <ul class="drop-menu">
                                             <li><a href="#">Junior Suit</a></li>
@@ -41,24 +51,16 @@
             </div>
         </div>
     </header>
-    <!-- Header End -->
 
-<div class="imgBackground" >
-    <div id="SlideShow1" style="" >
-        <img class="image" src="../assets/IMG_20190703_070933.jpg">
-    </div>
-<!--<div id="SlideShow1">
-    <img src="../assets/IMG_20190703_070933.jpg" style="top:0">
-</div>-->
-</div>
-    <!-- Hero Slider Begin -->
-    <div class="hero-slider">
-        <div class="slider-item">
-            <div class="single-slider-item set-bg" data-setbg="../assets/img/slider-1.jpg">
-
-            </div>
+        <div>
+            <transition-group name="fade" tag="div">
+                <div v-for="i in [currentIndex]" :key="i">
+                    <img :src="currentImg" class="imgSlider"/>
+                </div>
+            </transition-group>
+            <a class="prev" @click="prev" href="#">&#10094;</a>
+            <a class="next" @click="next" href="#">&#10095;</a>
         </div>
-    </div>
 
         <!-- Room Availability Section Begin -->
         <section class="room-availability spad">
@@ -66,17 +68,9 @@
                 <div class="room-check">
                     <div class="row">
                         <div class="col-lg-6">
+                            <img src="../assets/img/sattal-pics/FB_IMG_1577276579967.jpg" alt="">
                             <div class="room-item">
                                 <div class="room-pic-slider room-pic-item owl-carousel">
-                                    <div class="room-pic">
-                                        <img src="../assets/img/room-slider/room-1.jpg" alt="">
-                                    </div>
-                                    <div class="room-pic">
-                                        <img src="../assets/img/room-slider/room-2.jpg" alt="">
-                                    </div>
-                                    <div class="room-pic">
-                                        <img src="../assets/img/room-slider/room-3.jpg" alt="">
-                                    </div>
                                 </div>
                                 <div class="room-text">
                                     <div class="room-title">
@@ -86,7 +80,7 @@
                                             <h2>$252</h2>
                                         </div>
                                     </div>
-                                    <div class="room-features">
+                                    <div class="room-features" style="margin-top:-10px">
                                         <div class="room-info">
                                             <i class="flaticon-019-television"></i>
                                             <span>Smart TV</span>
@@ -194,7 +188,7 @@
                             </div>
                         </div>
                         <div class="col-lg-6 p-0">
-                            <div class="facilities-img set-bg" data-setbg="../assets/img/facilities-1.jpg"></div>
+                            <img src="../assets/img/sattal-pics/IMG_20200226_102435.jpg" style="height:570px">
                         </div>
                         <div class="col-lg-6 p-0 ">
                             <div class="facilities-text-warp">
@@ -217,131 +211,13 @@
                             </div>
                         </div>
                         <div class="col-lg-6 p-0 order-lg-2 order-1">
-                            <div class="facilities-img set-bg" data-setbg="img/facilities-2.jpg"></div>
+                            <img src="../assets/img/sattal-pics/IMG_20191026_114832.jpg">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <!-- Facilities Section End -->
-
-        <div class="testimonial-section spad">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-title">
-                            <h1>Guestbook</h1>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="testimonial-item">
-                            <div class="tab-content">
-                                <div class="tab-pane fade-in active" id="testimonial-1" role="tabpanel">
-                                    <div class="single-testimonial-item">
-                                        <span class="test-date">02/02/2019</span>
-                                        <div class="test-rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <h4>Loved It</h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiselit. Vivamus libero mauris,
-                                            bibendum eget sapien ac, ultrices rhoncus ipsum. Donec nec sapien in urna
-                                            fermentum ornare.</p>
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade" id="testimonial-2" role="tabpanel">
-                                    <div class="single-testimonial-item">
-                                        <span class="test-date">02/02/2019</span>
-                                        <div class="test-rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <h4>Loved It2</h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiselit. Vivamus libero mauris,
-                                            bibendum eget sapien ac, ultrices rhoncus ipsum. Donec nec sapien in urna
-                                            fermentum ornare.</p>
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade" id="testimonial-3" role="tabpanel">
-                                    <div class="single-testimonial-item">
-                                        <span class="test-date">02/02/2019</span>
-                                        <div class="test-rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <h4>Loved It3</h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiselit. Vivamus libero mauris,
-                                            bibendum eget sapien ac, ultrices rhoncus ipsum. Donec nec sapien in urna
-                                            fermentum ornare.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="testimonial-author-item">
-                            <ul class="nav" role="tablist">
-                                <li>
-                                    <a data-toggle="tab" href="#testimonial-1" role="tab" class="show active">
-                                        <div class="author-pic">
-                                            <img src="../assets/img/testimonial/author-1.jpg" alt="">
-                                        </div>
-                                        <div class="author-text">
-                                            <h5>John Doe <span>Berlin</span></h5>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a data-toggle="tab" href="#testimonial-2" role="tab">
-                                        <div class="author-pic">
-                                            <img src="../assets/img/testimonial/author-2.jpg" alt="">
-                                        </div>
-                                        <div class="author-text">
-                                            <h5>John Doe <span>Berlin</span></h5>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a data-toggle="tab" href="#testimonial-3" role="tab">
-                                        <div class="author-pic">
-                                            <img src="../assets/img/testimonial/author-3.jpg" alt="">
-                                        </div>
-                                        <div class="author-text">
-                                            <h5>John Doe <span>Berlin</span></h5>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Follow Instagram Section Begin -->
-        <!--<section class="follow-instagram">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h2>Follow us on Instagram @yourhotel</h2>
-                    </div>
-                </div>
-            </div>
-        </section>-->
-        <!-- Follow Instagram Section End -->
 
         <!-- Footer Room Pic Section Begin -->
         <div class="footer-room-pic">
@@ -417,7 +293,6 @@
 
     </div>
 </template>
-
 <script>
     import $ from 'jquery'
     /*------------------
@@ -434,9 +309,44 @@
         var bg = $(this).data('setbg');
         $(this).css('background-image', 'url('+bg+')');
     });
-
 export default {
-}
+    name: "Slider",
+    data() {
+        return {
+            images: [
+                require("../assets/img/sattal-pics/IMG_20190703_070933.jpg"),
+                require("../assets/img/sattal-pics/IMG_20180920_071542.jpg"),
+                require("../assets/img/sattal-pics/IMG_20190518_143137.jpg"),
+                require("../assets/img/sattal-pics/IMG_20190623_122835.jpg"),
+            ],
+            timer: null,
+            currentIndex: 0
+        };
+    },
+
+    mounted: function() {
+        this.startSlide();
+    },
+
+    methods: {
+        startSlide: function() {
+            this.timer = setInterval(this.next, 4000);
+        },
+
+        next: function() {
+            this.currentIndex += 1;
+        },
+        prev: function() {
+            this.currentIndex -= 1;
+        }
+    },
+
+    computed: {
+        currentImg: function() {
+            return this.images[Math.abs(this.currentIndex) % this.images.length];
+        }
+    }
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -451,7 +361,35 @@ export default {
     @import "../assets/css/owl.carousel.min.css";
     @import "../assets/css/linearicons.css";
     @import "../assets/css/flaticon.css";
-    .imgBackground{
-        height: 1000px;
+    .imgSlider{
+        height:750px;
+        width:100%;
+    }
+    .prev, .next {
+        cursor: pointer;
+        position: absolute;
+        top: 40%;
+        width: auto;
+        padding: 16px;
+        margin-top:130px;
+        color: white;
+        font-weight: bold;
+        font-size: 18px;
+        transition: 0.7s ease;
+        border-radius: 0 4px 4px 0;
+        text-decoration: none;
+        user-select: none;
+    }
+
+    .next {
+        right: 0;
+    }
+
+    .prev {
+        left: 0;
+    }
+
+    .prev:hover, .next:hover {
+        background-color: rgba(0,0,0,0.9);
     }
 </style>
