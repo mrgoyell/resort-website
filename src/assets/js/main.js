@@ -36,18 +36,18 @@ import $ from 'jquery'
     /*------------------
 		Date Picker
 	--------------------*/
-    $(".datepicker-1").datepicker();
+   /* $(".datepicker-1").datepicker();
     $(".datepicker-2").datepicker();
 
-    /*------------------
+    /!*------------------
 		Nice Selector
-	--------------------*/
+	--------------------*!/
     $('.suit-select').niceSelect();
 
 
-    /*------------------
+    /!*------------------
         Room Pic Slider
-    --------------------*/
+    --------------------*!/
     $(".room-pic-slider").owlCarousel({
         loop: true,
         margin: 0,
@@ -59,9 +59,9 @@ import $ from 'jquery'
         autoplay: false,
     });
 
-    /*-------------------
+    /!*-------------------
 		Quantity change
-	--------------------- */
+	--------------------- *!/
     var proQty = $('.pro-qty');
     proQty.prepend('<span class="dec qtybtn">-</span>');
     proQty.append('<span class="inc qtybtn">+</span>');
@@ -82,9 +82,9 @@ import $ from 'jquery'
         $button.parent().find('input').val(newVal);
     });
 
-    /*------------------
+    /!*------------------
         Magnific Popup
-    --------------------*/
+    --------------------*!/
     $('.pop-up').magnificPopup({
         type: 'iframe'
-    });
+    });*/

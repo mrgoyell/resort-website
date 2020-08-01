@@ -1,4 +1,5 @@
-;(function ($, document, window) {
+import jQuery from 'jquery'
+(function ($, document) {
     var
     // default settings object.
         defaults = {
@@ -51,9 +52,9 @@
         this.settings = $.extend({}, defaults, options);
 
         // Don't remove IDs by default if duplicate is false
-        if (!this.settings.duplicate && !options.hasOwnProperty("removeIds")) {
+        /*if (!this.settings.duplicate && !options.hasOwnProperty("removeIds")) {
           this.settings.removeIds = false;
-        }
+        }*/
 
         this._defaults = defaults;
         this._name = mobileMenu;
@@ -210,12 +211,12 @@
 
             //also close on click if parent links are set
             if (settings.closeOnClick && settings.allowParentLinks) {
-                item.children('a').children('a').click(function (event) {
+                item.children('a').children('a').click(function () {
                     //Emulate menu close
                     $($this.btn).click();
                 });
 
-                item.find('.'+prefix+'_parent-link a:not(.'+prefix+'_item)').click(function(event){
+                item.find('.'+prefix+'_parent-link a:not(.'+prefix+'_item)').click(function(){
                     //Emulate menu close
                         $($this.btn).click();
                 });
@@ -312,9 +313,9 @@
                 break;
                 case Keyboard.UP:
                     e.preventDefault();
-                    var allItems = $(e.target).parent().parent().children().children('[role="menuitem"]:visible');
-                    var idx = allItems.index( e.target );
-                    var next = allItems.eq( idx - 1 );
+                    allItems = $(e.target).parent().parent().children().children('[role="menuitem"]:visible');
+                    idx = allItems.index( e.target );
+                    next = allItems.eq( idx - 1 );
                     next.focus();
                 break;
                 case Keyboard.LEFT:
@@ -345,7 +346,7 @@
     };
 
     //toggle menu
-    Plugin.prototype._menuToggle = function (el) {
+    Plugin.prototype._menuToggle = function () {
         var $this = this;
         var btn = $this.btn;
         var mobileNav = $this.mobileNav;
