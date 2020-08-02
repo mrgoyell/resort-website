@@ -1,1 +1,0 @@
-/home/anurag/resort-website/src/App.vue
